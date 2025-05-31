@@ -9,14 +9,62 @@ import sys
 import logging
 import argparse
 from dotenv import load_dotenv
-
+import subprocess
 import time
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from contextlib import contextmanager
 import asyncio
 from langchain_openai import AzureChatOpenAI
 from browser_use import Agent, Controller
-import pyautogui
+from browser_use.browser.session import BrowserSession
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+@contextmanager
+def jupyter_lab_server(port=8889):
+    """Context manager that starts jupyter-lab and automatically stops it"""
+    curr_file_dir = os.path.dirname(os.path.abspath(__file__))
+    chinook_db_folder = os.path.join(curr_file_dir, "chinook_exports")
+
+    jupyter_command = [
+        "jupyter-lab",
+        "--port",
+        str(port),
+        "--no-browser",
+        "--NotebookApp.token=''",
+        "--NotebookApp.password=''",
+    ]
+
+    process = None
+    try:
+        print(f"Starting jupyter-lab on port {port}...")
+        process = subprocess.Popen(
+            jupyter_command,
+            cwd=chinook_db_folder,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+
+        # Give it time to start
+        time.sleep(3)
+
+        url = f"http://127.0.0.1:{port}"
+        print(f"Jupyter-lab started (PID: {process.pid}) at {url}")
+
+        yield url
+
+    finally:
+        # This cleanup happens automatically when exiting the context
+        if process and process.poll() is None:
+            print(f"Stopping jupyter-lab process (PID: {process.pid})")
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+                print("Jupyter-lab stopped successfully")
+            except subprocess.TimeoutExpired:
+                print("Force killing jupyter-lab process")
+                process.kill()
+                process.wait()
 
 
 # Set up argument parsing
@@ -57,113 +105,96 @@ azure_openai_endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
 logger.info("Starting browser automation agent")
 logger.debug(f"Azure endpoint configured: {azure_openai_endpoint is not None}")
 
+# Create a persistent browser session that stays alive
+browser_session = BrowserSession(
+    keep_alive=True,  # This keeps the browser alive after the agent finishes
+    headless=False,  # Set to True if you want it headless
+)
 
-async def browser_use_query_and_get_result(agent):
-    logger.debug("Starting agent execution with max_steps=10")
-    response = await agent.run(max_steps=10)
-    final_result = response.final_result()
+
+async def browser_use_query_and_get_history(agent: Agent):
+    logger.debug("Starting agent execution with max_steps=1000")
+    history = await agent.run(max_steps=1000)
     logger.info("Agent execution completed successfully")
-    return final_result
+    logger.info("Browser will remain open due to keep_alive=True")
+    return history
 
 
 def get_agent(task: str):
     logger.debug("Initializing Azure OpenAI client and agent")
     # Initialize the Azure OpenAI client
+    model_name = "gpt-4.1"
+    deployment = "gpt-4.1"
+
     llm = AzureChatOpenAI(
-        model_name="gpt-4.1",
+        model_name=model_name,
         openai_api_key=azure_openai_api_key,
-        azure_endpoint=azure_openai_endpoint,  # Corrected to use azure_endpoint instead of openai_api_base
-        deployment_name="gpt-4.1",  # Use deployment_name for Azure models
-        api_version="2024-12-01-preview",  # Explicitly set the API version here
+        azure_endpoint=azure_openai_endpoint,
+        deployment_name=deployment,
+        api_version="2024-12-01-preview",
     )
-    agent = Agent(task=task, llm=llm, controller=controller)
+    agent = Agent(
+        task=task,
+        llm=llm,
+        controller=controller,
+        browser_session=browser_session,
+        max_failures=10000,
+    )
     logger.debug("Agent initialized successfully")
     return agent
 
 
-@controller.action("save notebook")
-def save_notebook():
-    logger.info("Executing save notebook action")
-    print("SAVING THE NOTEBOOK")
-    pyautogui.press("esc")
-    time.sleep(0.5)
-    pyautogui.hotkey("command", "s")
-    logger.debug("Save notebook action completed")
-
-
-@controller.action("save cell")
-def save_cell_after_editing():
-    logger.info("Executing save cell action")
-    # TODO
-    print("SAVING THE CELL")
-    time.sleep(0.1)
-    pyautogui.hotkey("command", "s")
-    logger.debug("Save cell action completed")
-
-
-@controller.action("delete current selected cell")
-def delete_current_selected_cell():
-    logger.info("Executing delete current selected cell action")
-    print("TRYING TO DELETE THE CELL")
-    pyautogui.press("esc")
-    time.sleep(0.5)
-    pyautogui.press("d")
-    time.sleep(0.1)
-    pyautogui.press("d")
-    time.sleep(5)  # optional wait between repeats
-    logger.debug("Delete cell action completed")
-
-
-# Make this function async
-async def browse_based_on_query(
-    task="",
+async def perform_tasks_in_jupyter_lab(
+    jupyter_lab_url: str = "",
+    jupyter_lab_extension: str = "/lab/workspaces/auto-Z/tree/demo_notebook-Copy1.ipynb",
 ):
-    logger.info(f"Starting browser automation task")
-    logger.debug(f"Task details: {task[:100]}...")  # Log first 100 chars of task
+    logger.info(
+        f"Starting browser automation task in jupyter-lab instance at {jupyter_lab_url}"
+    )
 
-    task_preprompt = """
-    You're a professional data scientist, your task is to use browser in jupyter-lab instance running in http://maxims-macbook-pro.local:8888/lab/tree/demo_notebook.ipynb do a following tasks:
+    jlab_controls = """
+    COMMAND MODE commands:
+    m - change cell type to markdown
+    b - create cell below (of code type)
+    a - create cell above (of code type)
+    j - navigate to the cell below
+    k - navigate to the cell above
+    d, d - delete the current cell
+    EDIT MODE:
+    - allows editing the cell content
+    Following keys work regardless of the mode:
+    ctrl + enter - run the current cell
+    cmd + s - save the current cell
     """
-    task_preprompt += task
+
+    jlab_usage_instructions = """
+    Jupyter-lab cells are arranged in a sequence horizontally, first cell is at the top and last cell is at the bottom, you might need to navigate with scroll down or up to see the cell you'd like to edit. The notebook consists of cells that can run normal python in the sequence you ran them, so for example you can use first cells to define variables and functions, then another cells to perform high-level calls.
+    There a 2 modes: edit and command mode, to switch to command mode press esc, to switch to edit mode click inside the area of the cell you'd like to edit. If you'd like to create addittional cell you can use the command mode and create a new cell with b (below) or a (above) keys.
+    Current mode is shown in the bottom footer of the juypyter-lab instance page. Everytime you generate plot or table you need to save the cell and navigate down to see the output of the cell. You might delete all cells, but the last cell is always there and you can't delete it is expected. Currently selected cell is highlighed with a blue ribbon on the left to it and a blue border around it.
+    """
+
+    task_preprompt = f"""
+    Your task is to use browser in jupyter-lab instance running in {jupyter_lab_url}{jupyter_lab_extension},
+
+    Juptyer-lab usage instructions: {jlab_usage_instructions}
+
+    Jupyter-lab controls: {jlab_controls}
+
+    Also you have a helper delete cell and run cell buttons next to each of the cells.
+    do a following tasks and try to use the keys and commands as much as possible, everytime you're done with the edition of the cell save the task:
+    """
+    print("task_preprompt: ", task_preprompt)
     agent = get_agent(task_preprompt)
-    # Call the async helper
-    response = await browser_use_query_and_get_result(agent)
-    logger.info("Browser automation task completed")
-    return response
+    while True:
+        current_task = input("Give me a new task:\n")
+        agent.add_new_task(current_task)
+        history = await browser_use_query_and_get_history(agent)
+        print("final result: ", history.final_result())
+        print("---------------------------")
 
 
-# 1. "Which music genres have the longest average track duration?"
-# 2. "What's the relationship between track file size and pricing?"
-# 3. "Which artists have the most diverse portfolio in terms of genres?"
-# 4. "Are there any pricing patterns by composer? Do certain composers command premium pricing?"
-
-# Sales & Revenue Analysis:
-# 5. "Which countries generate the highest revenue per customer?"
-# 6. "What's the seasonal pattern of music purchases?"
-# 7. "Do customers from certain countries prefer specific genres?"
-# 8. "What's the average order size (number of tracks) per invoice?"
-
-# Customer Segmentation:
-# 9. "Which companies have the most music-buying employees?"
-# 10. "Is there a geographic concentration of high-value customers?"
-# 11. "Do customers with corporate email addresses spend differently than personal email users?"
-# 12. "Which cities have the most active music buyers?"
-
-# Product & Inventory Insights:
-# 13. "What percentage of tracks are missing composer information, and does this correlate with sales performance?"
-# 14. "Which media types (MP3, AAC, etc.) are most popular by region?"
-# 15. "Are there 'orphaned' albums (albums with very few track sales)?"
-# 16. "What's the typical album size (number of tracks) across different genres?"
-
-# Advanced Business Intelligence:
-# 17. "Can we identify 'whale' customers - those who contribute disproportionately to revenue?"
-# 18. "Which customer support representatives manage the highest-value customer portfolios?"
-# 19. "Are there any price optimization opportunities - tracks that sell well despite being underpriced?"
-# 20. "What's the customer acquisition pattern over time?"
 if __name__ == "__main__":
     logger.info("Script execution started")
-
-    # Simpler main execution without explicit agent close attempt
 
     task_context = """I've load chinook database exports previously into this folder where the notebook is. The current link to notebook instance contains following files:
     album_sample.csv       demo_notebook.ipynb (this notebook)   invoiceline_sample.csv
@@ -179,11 +210,15 @@ if __name__ == "__main__":
     """
 
     task = task_context + task_specific
-    # debug:
-    # task = "Call the save_notebook_after_editing tool, to validate it works"
-    task = "Create a new cell and write 'hello world', afterwards delete it by using delete_current_selected_cell tool"
 
     logger.debug("Executing main task")
-    result = asyncio.run(browse_based_on_query(task=task))
-    print(result)
-    logger.info("Script execution completed")
+
+    # Use context manager (automatically cleans up when done)
+    with jupyter_lab_server() as url:
+        print("url: ", url)
+        # Your agent code here - uncomment when ready to run
+        asyncio.run(perform_tasks_in_jupyter_lab(jupyter_lab_url=url))
+        # print(result)
+        time.sleep(10000000)
+
+    print("Jupyter-lab has been automatically stopped.")

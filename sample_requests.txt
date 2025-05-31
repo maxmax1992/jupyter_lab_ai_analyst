@@ -1,0 +1,28 @@
+1. "Which music genres have the longest average track duration?"
+2. "What's the relationship between track file size and pricing?"
+3. "Which artists have the most diverse portfolio in terms of genres?"
+4. "Are there any pricing patterns by composer? Do certain composers command premium pricing?"
+
+Sales & Revenue Analysis:
+5. "Which countries generate the highest revenue per customer?"
+6. "What's the seasonal pattern of music purchases?"
+7. "Do customers from certain countries prefer specific genres?"
+8. "What's the average order size (number of tracks) per invoice?"
+
+Customer Segmentation:
+9. "Which companies have the most music-buying employees?"
+10. "Is there a geographic concentration of high-value customers?"
+11. "Do customers with corporate email addresses spend differently than personal email users?"
+12. "Which cities have the most active music buyers?"
+
+Product & Inventory Insights:
+13. "What percentage of tracks are missing composer information, and does this correlate with sales performance?"
+14. "Which media types (MP3, AAC, etc.) are most popular by region?"
+15. "Are there 'orphaned' albums (albums with very few track sales)?"
+16. "What's the typical album size (number of tracks) across different genres?"
+
+Advanced Business Intelligence:
+17. "Can we identify 'whale' customers - those who contribute disproportionately to revenue?"
+18. "Which customer support representatives manage the highest-value customer portfolios?"
+19. "Are there any price optimization opportunities - tracks that sell well despite being underpriced?"
+20. "What's the customer acquisition pattern over time?"
