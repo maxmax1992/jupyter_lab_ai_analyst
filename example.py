@@ -16,6 +16,7 @@ import asyncio
 from langchain_openai import AzureChatOpenAI
 from browser_use import Agent, Controller
 from browser_use.browser.session import BrowserSession
+from whisper_request_utils import get_latest_user_request
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -46,7 +47,7 @@ def jupyter_lab_server(port=8889):
         )
 
         # Give it time to start
-        time.sleep(3)
+        time.sleep(5)
 
         url = f"http://127.0.0.1:{port}"
         print(f"Jupyter-lab started (PID: {process.pid}) at {url}")
@@ -76,6 +77,11 @@ def setup_args():
         "--debug",
         action="store_true",
         help="Enable debug logging (default: INFO level)",
+    )
+    parser.add_argument(
+        "--telegram_whisper",
+        action="store_true",
+        help="Enable telegram whisper (default: False)",
     )
     return parser.parse_args()
 
@@ -138,19 +144,31 @@ def get_agent(task: str):
         llm=llm,
         controller=controller,
         browser_session=browser_session,
-        max_failures=10000,
+        max_failures=3,
     )
     logger.debug("Agent initialized successfully")
     return agent
 
 
-async def perform_tasks_in_jupyter_lab(
-    jupyter_lab_url: str = "",
-    jupyter_lab_extension: str = "/lab/workspaces/auto-Z/tree/demo_notebook-Copy1.ipynb",
-):
-    logger.info(
-        f"Starting browser automation task in jupyter-lab instance at {jupyter_lab_url}"
-    )
+def get_next_user_request(args, processed_requests: set):
+    if args.telegram_whisper:
+        while True:
+            print("waiting for user's request from telegram bot...")
+            latest_request = get_latest_user_request()
+            if latest_request["id"] not in processed_requests:
+                processed_requests.add(latest_request["id"])
+                return latest_request["text"]
+            time.sleep(1)
+    else:
+        return input("Enter your request: ")
+
+
+def get_current_context(jupyter_lab_url: str, jupyter_lab_extension: str):
+    task_context = """context for you to act in the chrome-browser: I've load chinook database exports previously into this folder where the notebook is. The current link to notebook instance contains following files:
+    album_sample.csv       eda_notebook.ipynb (this notebook)   invoiceline_sample.csv
+    artist_sample.csv      genre_sample.csv       mediatype_sample.csv
+    customer_sample.csv    invoice_sample.csv     track_sample.csv
+    """
 
     jlab_controls = """
     COMMAND MODE commands:
@@ -174,6 +192,8 @@ async def perform_tasks_in_jupyter_lab(
     """
 
     task_preprompt = f"""
+    {task_context}
+
     Your task is to use browser in jupyter-lab instance running in {jupyter_lab_url}{jupyter_lab_extension},
 
     Juptyer-lab usage instructions: {jlab_usage_instructions}
@@ -181,44 +201,44 @@ async def perform_tasks_in_jupyter_lab(
     Jupyter-lab controls: {jlab_controls}
 
     Also you have a helper delete cell and run cell buttons next to each of the cells.
-    do a following tasks and try to use the keys and commands as much as possible, everytime you're done with the edition of the cell save the task:
+    do a following tasks and try to use the keys and commands as much as possible, everytime you're done with the edition/running of the cell save the notebook:
     """
-    print("task_preprompt: ", task_preprompt)
+    return task_preprompt
+
+
+async def perform_tasks_in_jupyter_lab(
+    args,
+    jupyter_lab_url: str = "",
+    jupyter_lab_extension: str = "/lab/workspaces/auto-Z/tree/eda_notebook.ipynb",
+):
+    logger.info(
+        f"Starting browser automation task in jupyter-lab instance at {jupyter_lab_url}"
+    )
+
+    processed_requests = set()
+    if args.telegram_whisper:
+        processed_requests.add(get_latest_user_request()["id"])
+
+    task_preprompt = get_current_context(jupyter_lab_url, jupyter_lab_extension)
     agent = get_agent(task_preprompt)
+    agent.add_new_task("Open the notebook page.")
+    await browser_use_query_and_get_history(agent)
+    print("task_preprompt: ", task_preprompt)
     while True:
-        current_task = input("Give me a new task:\n")
+        current_task = get_next_user_request(args, processed_requests)
         agent.add_new_task(current_task)
-        history = await browser_use_query_and_get_history(agent)
-        print("final result: ", history.final_result())
-        print("---------------------------")
+        await browser_use_query_and_get_history(agent)
 
 
 if __name__ == "__main__":
     logger.info("Script execution started")
 
-    task_context = """I've load chinook database exports previously into this folder where the notebook is. The current link to notebook instance contains following files:
-    album_sample.csv       demo_notebook.ipynb (this notebook)   invoiceline_sample.csv
-    artist_sample.csv      genre_sample.csv       mediatype_sample.csv
-    customer_sample.csv    invoice_sample.csv     track_sample.csv
-    """
-
-    task_specific = """
-
-    Which music genres have the longest average track duration?
-
-    Save the code after the execution.
-    """
-
-    task = task_context + task_specific
-
     logger.debug("Executing main task")
+    args = setup_args()
 
-    # Use context manager (automatically cleans up when done)
+    # context manager for automatic cleanup of the jupyter-lab instance
     with jupyter_lab_server() as url:
         print("url: ", url)
-        # Your agent code here - uncomment when ready to run
-        asyncio.run(perform_tasks_in_jupyter_lab(jupyter_lab_url=url))
-        # print(result)
-        time.sleep(10000000)
+        asyncio.run(perform_tasks_in_jupyter_lab(args, jupyter_lab_url=url))
 
     print("Jupyter-lab has been automatically stopped.")
