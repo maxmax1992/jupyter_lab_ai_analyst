@@ -10,8 +10,7 @@ def get_latest_user_request():
         json_data = response.json()
         return json_data
     except requests.RequestException as e:
-        print(f"Error fetching data: {e}")
-        return None
+        return {"id": "-1", "text": ""}
 
 
 if __name__ == "__main__":
