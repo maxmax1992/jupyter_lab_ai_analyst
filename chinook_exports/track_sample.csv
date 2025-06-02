@@ -1,0 +1,101 @@
+TrackId,Name,AlbumId,MediaTypeId,GenreId,Composer,Milliseconds,Bytes,UnitPrice
+1,For Those About To Rock (We Salute You),1,1,1,"Angus Young, Malcolm Young, Brian Johnson",343719,11170334,0.99
+2,Balls to the Wall,2,2,1,,342562,5510424,0.99
+3,Fast As a Shark,3,2,1,"F. Baltes, S. Kaufman, U. Dirkscneider & W. Hoffman",230619,3990994,0.99
+4,Restless and Wild,3,2,1,"F. Baltes, R.A. Smith-Diesel, S. Kaufman, U. Dirkscneider & W. Hoffman",252051,4331779,0.99
+5,Princess of the Dawn,3,2,1,Deaffy & R.A. Smith-Diesel,375418,6290521,0.99
+6,Put The Finger On You,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",205662,6713451,0.99
+7,Let's Get It Up,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",233926,7636561,0.99
+8,Inject The Venom,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",210834,6852860,0.99
+9,Snowballed,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",203102,6599424,0.99
+10,Evil Walks,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",263497,8611245,0.99
+11,C.O.D.,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",199836,6566314,0.99
+12,Breaking The Rules,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",263288,8596840,0.99
+13,Night Of The Long Knives,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",205688,6706347,0.99
+14,Spellbound,1,1,1,"Angus Young, Malcolm Young, Brian Johnson",270863,8817038,0.99
+15,Go Down,4,1,1,AC/DC,331180,10847611,0.99
+16,Dog Eat Dog,4,1,1,AC/DC,215196,7032162,0.99
+17,Let There Be Rock,4,1,1,AC/DC,366654,12021261,0.99
+18,Bad Boy Boogie,4,1,1,AC/DC,267728,8776140,0.99
+19,Problem Child,4,1,1,AC/DC,325041,10617116,0.99
+20,Overdose,4,1,1,AC/DC,369319,12066294,0.99
+21,Hell Ain't A Bad Place To Be,4,1,1,AC/DC,254380,8331286,0.99
+22,Whole Lotta Rosie,4,1,1,AC/DC,323761,10547154,0.99
+23,Walk On Water,5,1,1,"Steven Tyler, Joe Perry, Jack Blades, Tommy Shaw",295680,9719579,0.99
+24,Love In An Elevator,5,1,1,"Steven Tyler, Joe Perry",321828,10552051,0.99
+25,Rag Doll,5,1,1,"Steven Tyler, Joe Perry, Jim Vallance, Holly Knight",264698,8675345,0.99
+26,What It Takes,5,1,1,"Steven Tyler, Joe Perry, Desmond Child",310622,10144730,0.99
+27,Dude (Looks Like A Lady),5,1,1,"Steven Tyler, Joe Perry, Desmond Child",264855,8679940,0.99
+28,Janie's Got A Gun,5,1,1,"Steven Tyler, Tom Hamilton",330736,10869391,0.99
+29,Cryin',5,1,1,"Steven Tyler, Joe Perry, Taylor Rhodes",309263,10056995,0.99
+30,Amazing,5,1,1,"Steven Tyler, Richie Supa",356519,11616195,0.99
+31,Blind Man,5,1,1,"Steven Tyler, Joe Perry, Taylor Rhodes",240718,7877453,0.99
+32,Deuces Are Wild,5,1,1,"Steven Tyler, Jim Vallance",215875,7074167,0.99
+33,The Other Side,5,1,1,"Steven Tyler, Jim Vallance",244375,7983270,0.99
+34,Crazy,5,1,1,"Steven Tyler, Joe Perry, Desmond Child",316656,10402398,0.99
+35,Eat The Rich,5,1,1,"Steven Tyler, Joe Perry, Jim Vallance",251036,8262039,0.99
+36,Angel,5,1,1,"Steven Tyler, Desmond Child",307617,9989331,0.99
+37,Livin' On The Edge,5,1,1,"Steven Tyler, Joe Perry, Mark Hudson",381231,12374569,0.99
+38,All I Really Want,6,1,1,Alanis Morissette & Glenn Ballard,284891,9375567,0.99
+39,You Oughta Know,6,1,1,Alanis Morissette & Glenn Ballard,249234,8196916,0.99
+40,Perfect,6,1,1,Alanis Morissette & Glenn Ballard,188133,6145404,0.99
+41,Hand In My Pocket,6,1,1,Alanis Morissette & Glenn Ballard,221570,7224246,0.99
+42,Right Through You,6,1,1,Alanis Morissette & Glenn Ballard,176117,5793082,0.99
+43,Forgiven,6,1,1,Alanis Morissette & Glenn Ballard,300355,9753256,0.99
+44,You Learn,6,1,1,Alanis Morissette & Glenn Ballard,239699,7824837,0.99
+45,Head Over Feet,6,1,1,Alanis Morissette & Glenn Ballard,267493,8758008,0.99
+46,Mary Jane,6,1,1,Alanis Morissette & Glenn Ballard,280607,9163588,0.99
+47,Ironic,6,1,1,Alanis Morissette & Glenn Ballard,229825,7598866,0.99
+48,Not The Doctor,6,1,1,Alanis Morissette & Glenn Ballard,227631,7604601,0.99
+49,Wake Up,6,1,1,Alanis Morissette & Glenn Ballard,293485,9703359,0.99
+50,You Oughta Know (Alternate),6,1,1,Alanis Morissette & Glenn Ballard,491885,16008629,0.99
+51,We Die Young,7,1,1,Jerry Cantrell,152084,4925362,0.99
+52,Man In The Box,7,1,1,"Jerry Cantrell, Layne Staley",286641,9310272,0.99
+53,Sea Of Sorrow,7,1,1,Jerry Cantrell,349831,11316328,0.99
+54,Bleed The Freak,7,1,1,Jerry Cantrell,241946,7847716,0.99
+55,I Can't Remember,7,1,1,"Jerry Cantrell, Layne Staley",222955,7302550,0.99
+56,"Love, Hate, Love",7,1,1,"Jerry Cantrell, Layne Staley",387134,12575396,0.99
+57,It Ain't Like That,7,1,1,"Jerry Cantrell, Michael Starr, Sean Kinney",277577,8993793,0.99
+58,Sunshine,7,1,1,Jerry Cantrell,284969,9216057,0.99
+59,Put You Down,7,1,1,Jerry Cantrell,196231,6420530,0.99
+60,Confusion,7,1,1,"Jerry Cantrell, Michael Starr, Layne Staley",344163,11183647,0.99
+61,I Know Somethin (Bout You),7,1,1,Jerry Cantrell,261955,8497788,0.99
+62,Real Thing,7,1,1,"Jerry Cantrell, Layne Staley",243879,7937731,0.99
+63,Desafinado,8,1,2,,185338,5990473,0.99
+64,Garota De Ipanema,8,1,2,,285048,9348428,0.99
+65,Samba De Uma Nota Só (One Note Samba),8,1,2,,137273,4535401,0.99
+66,Por Causa De Você,8,1,2,,169900,5536496,0.99
+67,Ligia,8,1,2,,251977,8226934,0.99
+68,Fotografia,8,1,2,,129227,4198774,0.99
+69,Dindi (Dindi),8,1,2,,253178,8149148,0.99
+70,Se Todos Fossem Iguais A Você (Instrumental),8,1,2,,134948,4393377,0.99
+71,Falando De Amor,8,1,2,,219663,7121735,0.99
+72,Angela,8,1,2,,169508,5574957,0.99
+73,Corcovado (Quiet Nights Of Quiet Stars),8,1,2,,205662,6687994,0.99
+74,Outra Vez,8,1,2,,126511,4110053,0.99
+75,O Boto (Bôto),8,1,2,,366837,12089673,0.99
+76,"Canta, Canta Mais",8,1,2,,271856,8719426,0.99
+77,Enter Sandman,9,1,3,Apocalyptica,221701,7286305,0.99
+78,Master Of Puppets,9,1,3,Apocalyptica,436453,14375310,0.99
+79,Harvester Of Sorrow,9,1,3,Apocalyptica,374543,12372536,0.99
+80,The Unforgiven,9,1,3,Apocalyptica,322925,10422447,0.99
+81,Sad But True,9,1,3,Apocalyptica,288208,9405526,0.99
+82,Creeping Death,9,1,3,Apocalyptica,308035,10110980,0.99
+83,Wherever I May Roam,9,1,3,Apocalyptica,369345,12033110,0.99
+84,Welcome Home (Sanitarium),9,1,3,Apocalyptica,350197,11406431,0.99
+85,Cochise,10,1,1,Audioslave/Chris Cornell,222380,5339931,0.99
+86,Show Me How to Live,10,1,1,Audioslave/Chris Cornell,277890,6672176,0.99
+87,Gasoline,10,1,1,Audioslave/Chris Cornell,279457,6709793,0.99
+88,What You Are,10,1,1,Audioslave/Chris Cornell,249391,5988186,0.99
+89,Like a Stone,10,1,1,Audioslave/Chris Cornell,294034,7059624,0.99
+90,Set It Off,10,1,1,Audioslave/Chris Cornell,263262,6321091,0.99
+91,Shadow on the Sun,10,1,1,Audioslave/Chris Cornell,343457,8245793,0.99
+92,I am the Highway,10,1,1,Audioslave/Chris Cornell,334942,8041411,0.99
+93,Exploder,10,1,1,Audioslave/Chris Cornell,206053,4948095,0.99
+94,Hypnotize,10,1,1,Audioslave/Chris Cornell,206628,4961887,0.99
+95,Bring'em Back Alive,10,1,1,Audioslave/Chris Cornell,329534,7911634,0.99
+96,Light My Way,10,1,1,Audioslave/Chris Cornell,303595,7289084,0.99
+97,Getaway Car,10,1,1,Audioslave/Chris Cornell,299598,7193162,0.99
+98,The Last Remaining Light,10,1,1,Audioslave/Chris Cornell,317492,7622615,0.99
+99,Your Time Has Come,11,1,4,"Cornell, Commerford, Morello, Wilk",255529,8273592,0.99
+100,Out Of Exile,11,1,4,"Cornell, Commerford, Morello, Wilk",291291,9506571,0.99

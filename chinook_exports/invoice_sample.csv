@@ -1,0 +1,101 @@
+InvoiceId,CustomerId,InvoiceDate,BillingAddress,BillingCity,BillingState,BillingCountry,BillingPostalCode,Total
+1,2,2009-01-01 00:00:00,Theodor-Heuss-Straße 34,Stuttgart,,Germany,70174,1.98
+2,4,2009-01-02 00:00:00,Ullevålsveien 14,Oslo,,Norway,0171,3.96
+3,8,2009-01-03 00:00:00,Grétrystraat 63,Brussels,,Belgium,1000,5.94
+4,14,2009-01-06 00:00:00,8210 111 ST NW,Edmonton,AB,Canada,T6G 2C7,8.91
+5,23,2009-01-11 00:00:00,69 Salem Street,Boston,MA,USA,2113,13.86
+6,37,2009-01-19 00:00:00,Berger Straße 10,Frankfurt,,Germany,60316,0.99
+7,38,2009-02-01 00:00:00,Barbarossastraße 19,Berlin,,Germany,10779,1.98
+8,40,2009-02-01 00:00:00,"8, Rue Hanovre",Paris,,France,75002,1.98
+9,42,2009-02-02 00:00:00,"9, Place Louis Barthou",Bordeaux,,France,33000,3.96
+10,46,2009-02-03 00:00:00,3 Chatham Street,Dublin,Dublin,Ireland,,5.94
+11,52,2009-02-06 00:00:00,202 Hoxton Street,London,,United Kingdom,N1 5LH,8.91
+12,2,2009-02-11 00:00:00,Theodor-Heuss-Straße 34,Stuttgart,,Germany,70174,13.86
+13,16,2009-02-19 00:00:00,1600 Amphitheatre Parkway,Mountain View,CA,USA,94043-1351,0.99
+14,17,2009-03-04 00:00:00,1 Microsoft Way,Redmond,WA,USA,98052-8300,1.98
+15,19,2009-03-04 00:00:00,1 Infinite Loop,Cupertino,CA,USA,95014,1.98
+16,21,2009-03-05 00:00:00,801 W 4th Street,Reno,NV,USA,89503,3.96
+17,25,2009-03-06 00:00:00,319 N. Frances Street,Madison,WI,USA,53703,5.94
+18,31,2009-03-09 00:00:00,194A Chain Lake Drive,Halifax,NS,Canada,B3S 1C5,8.91
+19,40,2009-03-14 00:00:00,"8, Rue Hanovre",Paris,,France,75002,13.86
+20,54,2009-03-22 00:00:00,110 Raeburn Pl,Edinburgh ,,United Kingdom,EH4 1HH,0.99
+21,55,2009-04-04 00:00:00,421 Bourke Street,Sidney,NSW,Australia,2010,1.98
+22,57,2009-04-04 00:00:00,"Calle Lira, 198",Santiago,,Chile,,1.98
+23,59,2009-04-05 00:00:00,"3,Raj Bhavan Road",Bangalore,,India,560001,3.96
+24,4,2009-04-06 00:00:00,Ullevålsveien 14,Oslo,,Norway,0171,5.94
+25,10,2009-04-09 00:00:00,"Rua Dr. Falcão Filho, 155",São Paulo,SP,Brazil,01007-010,8.91
+26,19,2009-04-14 00:00:00,1 Infinite Loop,Cupertino,CA,USA,95014,13.86
+27,33,2009-04-22 00:00:00,5112 48 Street,Yellowknife,NT,Canada,X1A 1N6,0.99
+28,34,2009-05-05 00:00:00,Rua da Assunção 53,Lisbon,,Portugal,,1.98
+29,36,2009-05-05 00:00:00,Tauentzienstraße 8,Berlin,,Germany,10789,1.98
+30,38,2009-05-06 00:00:00,Barbarossastraße 19,Berlin,,Germany,10779,3.96
+31,42,2009-05-07 00:00:00,"9, Place Louis Barthou",Bordeaux,,France,33000,5.94
+32,48,2009-05-10 00:00:00,Lijnbaansgracht 120bg,Amsterdam,VV,Netherlands,1016,8.91
+33,57,2009-05-15 00:00:00,"Calle Lira, 198",Santiago,,Chile,,13.86
+34,12,2009-05-23 00:00:00,"Praça Pio X, 119",Rio de Janeiro,RJ,Brazil,20040-020,0.99
+35,13,2009-06-05 00:00:00,Qe 7 Bloco G,Brasília,DF,Brazil,71020-677,1.98
+36,15,2009-06-05 00:00:00,700 W Pender Street,Vancouver,BC,Canada,V6C 1G8,1.98
+37,17,2009-06-06 00:00:00,1 Microsoft Way,Redmond,WA,USA,98052-8300,3.96
+38,21,2009-06-07 00:00:00,801 W 4th Street,Reno,NV,USA,89503,5.94
+39,27,2009-06-10 00:00:00,1033 N Park Ave,Tucson,AZ,USA,85719,8.91
+40,36,2009-06-15 00:00:00,Tauentzienstraße 8,Berlin,,Germany,10789,13.86
+41,50,2009-06-23 00:00:00,C/ San Bernardo 85,Madrid,,Spain,28015,0.99
+42,51,2009-07-06 00:00:00,Celsiusg. 9,Stockholm,,Sweden,11230,1.98
+43,53,2009-07-06 00:00:00,113 Lupus St,London,,United Kingdom,SW1V 3EN,1.98
+44,55,2009-07-07 00:00:00,421 Bourke Street,Sidney,NSW,Australia,2010,3.96
+45,59,2009-07-08 00:00:00,"3,Raj Bhavan Road",Bangalore,,India,560001,5.94
+46,6,2009-07-11 00:00:00,Rilská 3174/6,Prague,,Czech Republic,14300,8.91
+47,15,2009-07-16 00:00:00,700 W Pender Street,Vancouver,BC,Canada,V6C 1G8,13.86
+48,29,2009-07-24 00:00:00,796 Dundas Street West,Toronto,ON,Canada,M6J 1V1,0.99
+49,30,2009-08-06 00:00:00,230 Elgin Street,Ottawa,ON,Canada,K2P 1L7,1.98
+50,32,2009-08-06 00:00:00,696 Osborne Street,Winnipeg,MB,Canada,R3L 2B9,1.98
+51,34,2009-08-07 00:00:00,Rua da Assunção 53,Lisbon,,Portugal,,3.96
+52,38,2009-08-08 00:00:00,Barbarossastraße 19,Berlin,,Germany,10779,5.94
+53,44,2009-08-11 00:00:00,Porthaninkatu 9,Helsinki,,Finland,00530,8.91
+54,53,2009-08-16 00:00:00,113 Lupus St,London,,United Kingdom,SW1V 3EN,13.86
+55,8,2009-08-24 00:00:00,Grétrystraat 63,Brussels,,Belgium,1000,0.99
+56,9,2009-09-06 00:00:00,Sønder Boulevard 51,Copenhagen,,Denmark,1720,1.98
+57,11,2009-09-06 00:00:00,"Av. Paulista, 2022",São Paulo,SP,Brazil,01310-200,1.98
+58,13,2009-09-07 00:00:00,Qe 7 Bloco G,Brasília,DF,Brazil,71020-677,3.96
+59,17,2009-09-08 00:00:00,1 Microsoft Way,Redmond,WA,USA,98052-8300,5.94
+60,23,2009-09-11 00:00:00,69 Salem Street,Boston,MA,USA,2113,8.91
+61,32,2009-09-16 00:00:00,696 Osborne Street,Winnipeg,MB,Canada,R3L 2B9,13.86
+62,46,2009-09-24 00:00:00,3 Chatham Street,Dublin,Dublin,Ireland,,0.99
+63,47,2009-10-07 00:00:00,"Via Degli Scipioni, 43",Rome,RM,Italy,00192,1.98
+64,49,2009-10-07 00:00:00,Ordynacka 10,Warsaw,,Poland,00-358,1.98
+65,51,2009-10-08 00:00:00,Celsiusg. 9,Stockholm,,Sweden,11230,3.96
+66,55,2009-10-09 00:00:00,421 Bourke Street,Sidney,NSW,Australia,2010,5.94
+67,2,2009-10-12 00:00:00,Theodor-Heuss-Straße 34,Stuttgart,,Germany,70174,8.91
+68,11,2009-10-17 00:00:00,"Av. Paulista, 2022",São Paulo,SP,Brazil,01310-200,13.86
+69,25,2009-10-25 00:00:00,319 N. Frances Street,Madison,WI,USA,53703,0.99
+70,26,2009-11-07 00:00:00,2211 W Berry Street,Fort Worth,TX,USA,76110,1.98
+71,28,2009-11-07 00:00:00,302 S 700 E,Salt Lake City,UT,USA,84102,1.98
+72,30,2009-11-08 00:00:00,230 Elgin Street,Ottawa,ON,Canada,K2P 1L7,3.96
+73,34,2009-11-09 00:00:00,Rua da Assunção 53,Lisbon,,Portugal,,5.94
+74,40,2009-11-12 00:00:00,"8, Rue Hanovre",Paris,,France,75002,8.91
+75,49,2009-11-17 00:00:00,Ordynacka 10,Warsaw,,Poland,00-358,13.86
+76,4,2009-11-25 00:00:00,Ullevålsveien 14,Oslo,,Norway,0171,0.99
+77,5,2009-12-08 00:00:00,Klanova 9/506,Prague,,Czech Republic,14700,1.98
+78,7,2009-12-08 00:00:00,"Rotenturmstraße 4, 1010 Innere Stadt",Vienne,,Austria,1010,1.98
+79,9,2009-12-09 00:00:00,Sønder Boulevard 51,Copenhagen,,Denmark,1720,3.96
+80,13,2009-12-10 00:00:00,Qe 7 Bloco G,Brasília,DF,Brazil,71020-677,5.94
+81,19,2009-12-13 00:00:00,1 Infinite Loop,Cupertino,CA,USA,95014,8.91
+82,28,2009-12-18 00:00:00,302 S 700 E,Salt Lake City,UT,USA,84102,13.86
+83,42,2009-12-26 00:00:00,"9, Place Louis Barthou",Bordeaux,,France,33000,0.99
+84,43,2010-01-08 00:00:00,"68, Rue Jouvence",Dijon,,France,21000,1.98
+85,45,2010-01-08 00:00:00,Erzsébet krt. 58.,Budapest,,Hungary,H-1073,1.98
+86,47,2010-01-09 00:00:00,"Via Degli Scipioni, 43",Rome,RM,Italy,00192,3.96
+87,51,2010-01-10 00:00:00,Celsiusg. 9,Stockholm,,Sweden,11230,6.94
+88,57,2010-01-13 00:00:00,"Calle Lira, 198",Santiago,,Chile,,17.91
+89,7,2010-01-18 00:00:00,"Rotenturmstraße 4, 1010 Innere Stadt",Vienne,,Austria,1010,18.86
+90,21,2010-01-26 00:00:00,801 W 4th Street,Reno,NV,USA,89503,0.99
+91,22,2010-02-08 00:00:00,120 S Orange Ave,Orlando,FL,USA,32801,1.98
+92,24,2010-02-08 00:00:00,162 E Superior Street,Chicago,IL,USA,60611,1.98
+93,26,2010-02-09 00:00:00,2211 W Berry Street,Fort Worth,TX,USA,76110,3.96
+94,30,2010-02-10 00:00:00,230 Elgin Street,Ottawa,ON,Canada,K2P 1L7,5.94
+95,36,2010-02-13 00:00:00,Tauentzienstraße 8,Berlin,,Germany,10789,8.91
+96,45,2010-02-18 00:00:00,Erzsébet krt. 58.,Budapest,,Hungary,H-1073,21.86
+97,59,2010-02-26 00:00:00,"3,Raj Bhavan Road",Bangalore,,India,560001,1.99
+98,1,2010-03-11 00:00:00,"Av. Brigadeiro Faria Lima, 2170",São José dos Campos,SP,Brazil,12227-000,3.98
+99,3,2010-03-11 00:00:00,1498 rue Bélanger,Montréal,QC,Canada,H2G 1A7,3.98
+100,5,2010-03-12 00:00:00,Klanova 9/506,Prague,,Czech Republic,14700,3.96

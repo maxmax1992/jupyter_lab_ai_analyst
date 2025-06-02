@@ -68,7 +68,6 @@ async def browser_use_query_and_get_history(agent: Agent):
     logger.debug("Starting agent execution with max_steps=1000")
     history = await agent.run(max_steps=1000)
     logger.info("Agent execution completed successfully")
-    logger.info("Browser will remain open due to keep_alive=True")
     return history
 
 

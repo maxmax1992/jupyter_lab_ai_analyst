@@ -195,5 +195,4 @@ cython_debug/
 
 .DS_Store
 
-chinook_exports/
 chinook-database/
